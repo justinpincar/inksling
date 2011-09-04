@@ -1,0 +1,14 @@
+.idea
+.bundle
+db/*.sqlite3
+config/database.yml
+log/*
+tmp/
+solr/
+*.swp
+*~
+.DS_Store
+public/stylesheets/compiled/*
+spec/fixtures/*.yml
+*.pid
+coverage/
