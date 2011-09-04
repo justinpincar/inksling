@@ -54,9 +54,14 @@
                 </ul>
               </div>
               <div class="right">
-                <a href="#" id="user_nav">
-                  Log in <span class="weak">or</span> Sign up
-                </a>
+                <% if user_signed_in? %>
+                    <a href="<%= destroy_user_session_path %>" id="user_nav"><span class="weak">Sign out</span></a>
+                    <a href="#" id="user_nav"><span class="weak"><%= current_user.email %></span></a>
+                <% else %>
+                    <a href="<%= authenticate_path %>" id="user_nav">
+                      Log in <span class="weak">or</span> Sign up
+                    </a>
+                <% end %>
               </div>
             </div>
         </div>
