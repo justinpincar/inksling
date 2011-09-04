@@ -87,3 +87,25 @@
         }
     }
 }
+
+#notice-wrapper {
+    position:absolute; top:0px; width:100%; z-index: 9999999999;
+    #notice {
+        position: relative;
+        width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        background: $light-blue-gray;
+        text-align: center;
+        border: 2px solid $medium-blue-gray;
+        font-size: 12px;
+        -moz-box-shadow: rgba(0,0,0,0.2) 0 2px 8px 5px;
+        -webkit-box-shadow: rgba(0,0,0,0.2) 0 2px 8px 5px;
+        -o-box-shadow: rgba(0,0,0,0.2) 0 2px 8px 5px;
+        box-shadow: rgba(0,0,0,0.2) 0 2px 8px 5px;
+        -moz-border-radius: 8px;
+        border-radius: 8px;
+    }
+}

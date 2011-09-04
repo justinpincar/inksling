@@ -1,4 +1,6 @@
 Inksling::Application.routes.draw do
+  devise_for :users
+
   resources :inks
   resources :users
 
