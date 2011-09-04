@@ -11,6 +11,7 @@ body {
     > #content {
         @include container;
         width: $blueprint-container-size;
+        min-height: 600px;
 
         margin-left: auto;
         margin-right: auto;

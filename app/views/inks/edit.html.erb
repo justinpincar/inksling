@@ -1,21 +1,27 @@
-<h1>Editing ink</h1>
-
 <%= form_for(@ink) do |f| %>
-  <% if @ink.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@ink.errors.count, "error") %> prohibited this ink from being saved:</h2>
-
-      <ul>
-      <% @ink.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
+    <div class="full">
+      <h2><%= f.text_field :title, :class => "title" %></h2>
     </div>
-  <% end %>
 
-  <%= f.label :title %><%= f.text_field :title %><br />
-  <%= f.label :text %><%= f.text_area :text %>
-  <div class="actions">
-    <%= f.submit %><%= link_to 'cancel', @ink %>
-  </div>
+    <div class="main">
+      <%= f.text_area :text, :class => "text" %>
+      <%= f.submit %><%= link_to 'cancel', @ink %>
+    </div>
+
+    <div class="right-bar">
+      <h3 class="tags">Tags</h3>
+
+      <div>
+        asd fjsadk flj dskadkf jjakef jkdsfe
+      </div>
+
+      <h3 class="more">Miscellaneous</h3>
+
+      <div>
+        What type of composition is this?<br />
+        * poem<br />
+        * story<br />
+        * other
+      </div>
+    </div>
 <% end %>

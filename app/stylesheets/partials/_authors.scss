@@ -5,6 +5,10 @@ body.authors {
 
     .main {
         @include column(18);
+
+        .ink_blurb {
+            margin-bottom: 25px;
+        }
     }
 
      .right-bar {

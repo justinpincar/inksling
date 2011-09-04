@@ -12,6 +12,24 @@
         <%= @author.autobiography.present? ? strip_tags(@author.autobiography).gsub("\n", "<br />").html_safe : "(this author has no autobiography)" %>
     </div>
   </div>
+  <br />
+  <br />
+  <h3><%= @author.alias %>'s Ink</h3>
+  <div>
+    <% if @author.inks.empty? %>
+        <%= @author.alias %> hasn't created anything yet.
+    <% else %>
+        <% @author.inks.each do |ink| %>
+            <div class="ink_blurb">
+              <img class="ink_icon" style="float: left; margin-right: 6px; margin-bottom: 2px;" />
+              <div style="display: inline; vertical-align: top;">
+                <b><%= link_to ink.title, ink %></b><br />
+                <%= truncate(ink.text, :length => 250) %>
+              </div>
+            </div>
+        <% end %>
+    <% end %>
+  </div>
 </div>
 
 <div class="right-bar">

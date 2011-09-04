@@ -7,6 +7,11 @@ body.inks {
         @include column(18);
 
         .text {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-size: 12px;
+            font-style: normal;
+            font-weight: normal;
+            line-height: 18px;
             min-height: 200px;
             max-height: 500px;
             background: $light-blue-gray;
@@ -27,4 +32,20 @@ body.inks {
             margin-top: 20px;
         }
      }
+}
+
+body.inks.edit {
+    .full {
+        input.title {
+            margin-bottom: 5px;
+            font-size: 18px;
+        }
+    }
+
+    .main {
+        .text {
+            width: 695px;
+            height: 500px;
+        }
+    }
 }
