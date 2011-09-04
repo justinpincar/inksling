@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110904210223) do
+ActiveRecord::Schema.define(:version => 20110904222753) do
 
   create_table "authors", :force => true do |t|
     t.string   "email",                                 :default => "", :null => false
@@ -31,6 +31,16 @@ ActiveRecord::Schema.define(:version => 20110904210223) do
 
   add_index "authors", ["email"], :name => "index_authors_on_email", :unique => true
   add_index "authors", ["reset_password_token"], :name => "index_authors_on_reset_password_token", :unique => true
+
+  create_table "comments", :force => true do |t|
+    t.text     "text"
+    t.integer  "author_id"
+    t.integer  "ink_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "comments", ["ink_id"], :name => "index_comments_on_ink_id"
 
   create_table "inks", :force => true do |t|
     t.string   "title"

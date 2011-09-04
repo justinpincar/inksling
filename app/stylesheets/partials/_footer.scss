@@ -1,7 +1,7 @@
 #footer {
     clear: both;
     display: block;
-    height: 100px;
+    height: 60px;
     width: 100%;
 
     > .container {
@@ -34,14 +34,6 @@
 
                 &:last-child {
                     border: none;
-                }
-
-                a {
-                    color: $medium-gray;
-
-                    &:hover {
-                        color: darken($medium-gray, 20%);
-                    }
                 }
             }
         }

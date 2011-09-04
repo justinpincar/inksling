@@ -25,6 +25,7 @@ body {
 
     a:hover, a:active {
         text-decoration: underline;
+        color: darken($medium-gray, 20%);
     }
 
     h2 {

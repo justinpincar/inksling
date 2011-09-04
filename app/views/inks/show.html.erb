@@ -9,6 +9,44 @@
   <div class="text">
     <%= @ink.text.present? ? strip_tags(@ink.text).gsub("\n", "<br />").html_safe : "(this ink has no text)" %>
   </div>
+
+  <div class="comments_block">
+      <h3>Comments</h3>
+      <div>
+        <% if @ink.comments.empty? %>
+            No comments.
+        <% else %>
+            <% @ink.comments.each do |comment| %>
+
+              <div class="comment_block">
+                <img class="author_thumbnail_small" />
+                <div class="comment_content">
+                  <b><%= link_to comment.author.alias, comment.author %></b>
+                  <% if @ink.author == current_author %><%= link_to "(remove)", comment_path(comment), :method => "delete", :confirm => "Really remove this comment?" %><% end %>
+                  <br/>
+                  <%= comment.text %>
+                </div>
+              </div>
+            <% end %>
+        <% end %>
+        <%= form_for(Comment.new) do |f| %>
+            <%= hidden_field_tag :ink_id, @ink.id %>
+          <div class="comment_block">
+            <img class="author_thumbnail_small" />
+            <div class="comment_content">
+            <% if author_signed_in? %>
+                <%= f.text_area :text %>
+                <%= f.submit ("Comment") %>
+            <% else %>
+                <%= f.text_area :text %>
+                <%= f.submit ("Comment") %>
+            <% end %>
+            </div>
+          </div>
+
+        <% end %>
+      </div>
+  </div>
 </div>
 
 <div class="right-bar">

@@ -19,6 +19,36 @@ body.inks {
             overflow-y: auto;
             padding: 4px;
         }
+
+        .comments_block {
+            margin-top: 10px;
+
+            .comment_block {
+                @include clearfix;
+                margin-bottom: 10px;
+
+                > .author_thumbnail_small {
+                    float: left;
+                    margin-right: 6px;
+                    margin-bottom: 2px;
+                }
+
+                > .comment_content {
+                    display: inline;
+                    vertical-align: top;
+
+                    textarea {
+                        height: 37px;
+                        width: 400px;
+                    }
+
+                    input[type="submit"] {
+                        position: relative;
+                        top: -15px;
+                    }
+                }
+           }
+        }
     }
 
      .right-bar {

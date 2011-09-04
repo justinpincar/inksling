@@ -93,7 +93,11 @@
 }
 
 #notice-wrapper {
-    position:absolute; top:0px; width:100%; z-index: 9999999999;
+    position: fixed;
+    top: 0px;
+    width: 100%;
+    z-index: 9999999999;
+
     #notice {
         position: relative;
         width: 600px;

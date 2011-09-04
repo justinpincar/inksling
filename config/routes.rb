@@ -4,9 +4,10 @@ Inksling::Application.routes.draw do
     match '/sign_out' => "devise/sessions#destroy", :as => :sign_out
   end
 
+  resources :authors
+  resources :comments, :only => [:create, :destroy]
   resources :dashboard, :only => [:index]
   resources :inks
-  resources :authors
 
   root :to => "home#index"
 end
