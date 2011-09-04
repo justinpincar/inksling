@@ -1,0 +1,27 @@
+<div class="main">
+  <h2>Recommended</h2>
+</div>
+
+<div class="right-bar">
+  <h2>Your Ink</h2>
+
+  <div>
+    <div class="ink_blurb">
+      <img class="ink_icon" style="float: left; margin-right: 6px; margin-bottom: 2px;" />
+      <div style="display: inline; line-height: 52px;">
+        <%= form_tag(:url => inks_path, :method => "post") do %>
+            <%= submit_tag("Create something!") %>
+        <% end %>
+      </div>
+    </div>
+    <% current_user.inks.each do |ink| %>
+        <div class="ink_blurb">
+          <img class="ink_icon" style="float: left; margin-right: 6px; margin-bottom: 2px;" />
+          <div style="display: inline; vertical-align: top;">
+            <b><%= link_to ink.title, ink %></b><br />
+            <%= truncate(ink.text, :length => 200) %>
+          </div>
+        </div>
+    <% end %>
+  </div>
+</div>

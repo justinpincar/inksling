@@ -14,15 +14,63 @@ body {
 
         margin-left: auto;
         margin-right: auto;
-        margin-top: 55px;
+        margin-top: 60px;
+    }
+
+    a, a:visited {
+        text-decoration: none;
+        color: $medium-gray;
+    }
+
+    a:hover, a:active {
+        text-decoration: underline;
+    }
+
+    h2 {
+        display: inline-block;
+        border-bottom: 1px solid $light-black;
+        margin-bottom: 5px;
+        font-size: 18px;
+    }
+
+    h3 {
+        display: inline-block;
+        border-bottom: 1px solid $light-black;
+        margin-bottom: 5px;
+        font-size: 16px;
     }
 }
 
-a {
+@mixin rounded-button($background-color: $light-black, $text-color: $white, $height: 25px) {
+    border-width: 0px;
+    background-color: $background-color;
+    color: $text-color;
+    cursor: pointer;
+    @include border-radius(3px);
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 11px;
+    text-align: center;
     text-decoration: none;
-    color: $light-blue;
+    height: $height;
+    min-width: 90px;
+    position: relative;
+    display: inline-block;
+
+    &:hover {
+        color: darken($text-color, 20%);
+    }
+
+    &:active {
+        margin-top: 1px;
+        color: darken($text-color, 40%);
+    }
+
+    &.disabled {
+        color: darken($text-color, 40%);
+        background-color: darken($background-color, 40%);
+    }
 }
 
-a:hover {
-    text-decoration: underline;
+input[type='submit'], button {
+    @include rounded-button();
 }

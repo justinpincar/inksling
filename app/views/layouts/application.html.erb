@@ -43,20 +43,20 @@
                 </a>
                 <ul id="site_nav">
                     <li>
-                      <a href="#">Community</a>
+                      <a href="#">Library</a>
                     </li>
                     <li>
-                      <a href="#">Ink of the now</a>
+                      <a href="#">Trending</a>
                     </li>
                     <li>
-                      <a href="#">Random ink</a>
+                      <a href="#">Random</a>
                     </li>
                 </ul>
               </div>
               <div class="right">
                 <% if user_signed_in? %>
                     <a href="<%= destroy_user_session_path %>" id="user_nav"><span class="weak">Sign out</span></a>
-                    <a href="#" id="user_nav"><span class="weak"><%= current_user.email %></span></a>
+                    <a href="<%= dashboard_index_path %>" id="user_nav"><span class="weak"><%= current_user.email %></span></a>
                 <% else %>
                     <a href="<%= authenticate_path %>" id="user_nav">
                       Log in <span class="weak">or</span> Sign up

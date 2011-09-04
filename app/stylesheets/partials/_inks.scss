@@ -1,0 +1,25 @@
+body.inks {
+    .full {
+        @include column(24, true);
+    }
+
+    .main {
+        @include column(18);
+
+        .text {
+            min-height: 200px;
+            max-height: 500px;
+            background: $light-blue-gray;
+            border: 1px solid $medium-blue-gray;
+            overflow-y: auto;
+        }
+    }
+
+     .right-bar {
+        @include column(6, true);
+
+        .tags, .more {
+            margin-top: 20px;
+        }
+     }
+}

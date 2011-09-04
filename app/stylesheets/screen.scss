@@ -15,3 +15,7 @@ $blueprint-grid-width: ($blueprint-container-size / $blueprint-grid-columns) - $
 
 @import "partials/base";
 @import "partials/header";
+@import "partials/shared";
+
+@import "partials/dashboard";
+@import "partials/inks";
