@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(:version => 20110904032840) do
 
   create_table "users", :force => true do |t|
     t.string   "alias"
+    t.string   "email"
     t.string   "password"
     t.datetime "created_at"
     t.datetime "updated_at"

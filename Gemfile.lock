@@ -30,7 +30,6 @@ GEM
     activesupport (3.0.9)
     archive-tar-minitar (0.5.2)
     arel (2.0.10)
-    bcrypt-ruby (2.1.4)
     builder (2.1.2)
     chunky_png (1.2.0)
     columnize (0.3.4)
@@ -38,10 +37,6 @@ GEM
       chunky_png (~> 1.2)
       fssm (>= 0.2.7)
       sass (~> 3.1)
-    devise (1.4.2)
-      bcrypt-ruby (~> 2.1.2)
-      orm_adapter (~> 0.0.3)
-      warden (~> 1.0.3)
     erubis (2.6.6)
       abstract (>= 1.0.0)
     fssm (0.2.7)
@@ -54,7 +49,6 @@ GEM
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
     mime-types (1.16)
-    orm_adapter (0.0.5)
     polyglot (0.3.1)
     rack (1.2.3)
     rack-mount (0.6.14)
@@ -93,15 +87,12 @@ GEM
     treetop (1.4.9)
       polyglot (>= 0.3.1)
     tzinfo (0.3.29)
-    warden (1.0.4)
-      rack (>= 1.0)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
   compass
-  devise
   rails (= 3.0.9)
   ruby-debug19
   sqlite3
