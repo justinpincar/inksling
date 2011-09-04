@@ -51,11 +51,11 @@
                     a {
                         color: $medium-gray;
                         text-decoration: none;
-                    }
 
-                    a:hover {
-                        color: $white;
-                        text-decoration: underline;
+                        &:hover {
+                            color: $white;
+                            text-decoration: underline;
+                        }
                     }
                 }
             }
