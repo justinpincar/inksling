@@ -1,0 +1,2 @@
+module InksHelper
+end

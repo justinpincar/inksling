@@ -1,0 +1,28 @@
+html {
+    overflow-y: scroll;
+    height: 100%;
+}
+
+body {
+    @include blueprint-typography(true);
+    background: $site-background;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+    > #content {
+        @include container;
+        width: $blueprint-container-size;
+
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 55px;
+    }
+}
+
+a {
+    text-decoration: none;
+    color: $light-blue;
+}
+
+a:hover {
+    text-decoration: underline;
+}

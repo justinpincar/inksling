@@ -1,0 +1,21 @@
+<h1>Listing inks</h1>
+
+<table>
+  <tr>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @inks.each do |ink| %>
+  <tr>
+    <td><%= link_to 'Show', ink %></td>
+    <td><%= link_to 'Edit', edit_ink_path(ink) %></td>
+    <td><%= link_to 'Destroy', ink, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Ink', new_ink_path %>
