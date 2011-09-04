@@ -17,9 +17,8 @@
             No comments.
         <% else %>
             <% @ink.comments.each do |comment| %>
-
               <div class="comment_block">
-                <img class="author_thumbnail_small" />
+                <img class="author_thumbnail_small" src="<%= comment.author.thumbnail_url %>"/>
                 <div class="comment_content">
                   <b><%= link_to comment.author.alias, comment.author %></b>
                   <% if @ink.author == current_author %><%= link_to "(remove)", comment_path(comment), :method => "delete", :confirm => "Really remove this comment?" %><% end %>
@@ -32,12 +31,14 @@
         <%= form_for(Comment.new) do |f| %>
             <%= hidden_field_tag :ink_id, @ink.id %>
           <div class="comment_block">
-            <img class="author_thumbnail_small" />
-            <div class="comment_content">
             <% if author_signed_in? %>
+            <img class="author_thumbnail_small" src="<%= current_author.thumbnail_url %>"/>
+            <div class="comment_content">
                 <%= f.text_area :text %>
                 <%= f.submit ("Comment") %>
             <% else %>
+            <img class="author_thumbnail_small" src="<%= Author.thumbnail_url %>"/>
+            <div class="comment_content">
                 <%= f.text_area :text %>
                 <%= f.submit ("Comment") %>
             <% end %>
@@ -51,8 +52,8 @@
 
 <div class="right-bar">
   <div class="author_blurb">
-    <img class="author_thumbnail" style="float: left; margin-right: 6px; margin-bottom: 2px;"/>
-    <div style="display: inline; vertical-align: top;">
+    <img class="author_thumbnail" src="<%= current_author.thumbnail_url %>"/>
+    <div class="author_content">
       <b><%= link_to @ink.author.alias, @ink.author %></b><br/>
       <%= truncate(@ink.author.autobiography, :length => 170) %>
     </div>

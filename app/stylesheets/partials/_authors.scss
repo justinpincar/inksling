@@ -6,6 +6,19 @@ body.authors {
     .main {
         @include column(18);
 
+        .author_autobiography {
+            > .author_thumbnail {
+                float: left;
+                margin-right: 6px;
+                margin-bottom: 2px;
+            }
+
+            > .author_content {
+                display: inline;
+                vertical-align: top;
+            }
+        }
+
         .ink_blurb {
             margin-bottom: 25px;
         }

@@ -7,8 +7,8 @@
 
 <div class="main">
   <div class="author_autobiography">
-    <img class="author_thumbnail" style="float: left; margin-right: 6px; margin-bottom: 2px;"/>
-    <div style="display: inline; vertical-align: top;">
+    <img class="author_thumbnail" src="<%= @author.thumbnail_url %>"/>
+    <div class="author_content">
         <%= @author.autobiography.present? ? strip_tags(@author.autobiography).gsub("\n", "<br />").html_safe : "(this author has no autobiography)" %>
     </div>
   </div>
