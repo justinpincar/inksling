@@ -4,6 +4,6 @@ class HomeController < ApplicationController
   end
 
   def authenticate
-    # This method intentionally left blank.
+    @user = User.new
   end
 end

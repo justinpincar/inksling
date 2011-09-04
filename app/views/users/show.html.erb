@@ -1,5 +1,9 @@
-<p id="notice"><%= notice %></p>
 
+This is a user.
 
+Id: <%= @user.id %><br />
+Alias: <%= @user.alias %><br />
+Email: <%= @user.email %><br />
+<br />
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>
