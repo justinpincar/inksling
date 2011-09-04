@@ -3,7 +3,7 @@ class CreateInks < ActiveRecord::Migration
     create_table :inks do |t|
       t.string :title
       t.text :text
-      t.integer :user_id
+      t.integer :author_id
 
       t.timestamps
     end

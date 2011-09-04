@@ -1,27 +1,33 @@
-
-
 <div class="full">
-    <h2><%= @ink.title %></h2>
-    <% if @ink.user == current_user %><%= link_to 'Edit', edit_ink_path(@ink) %><br /><% end %>
+  <h2><%= @ink.title %></h2>
+  <% if @ink.author == current_author %><%= link_to 'Edit', edit_ink_path(@ink) %>
+      <br/>
+  <% end %>
 </div>
 
 <div class="main">
-    <div class="text">
-      <%= @ink.text.present? ? strip_tags(@ink.text).gsub("\n", "<br />").html_safe : "(this ink has no text)" %>
-    </div>
+  <div class="text">
+    <%= @ink.text.present? ? strip_tags(@ink.text).gsub("\n", "<br />").html_safe : "(this ink has no text)" %>
+  </div>
 </div>
 
 <div class="right-bar">
-  <div>
-    <img style="height: 80px; width: 80px; border: 1px solid black;"/><%= @ink.user.alias.present? ? @ink.user.alias : "(InkSlinger)" %>
+  <div class="author_blurb">
+    <img class="author_thumbnail" style="float: left; margin-right: 6px; margin-bottom: 2px;"/>
+    <div style="display: inline; vertical-align: top;">
+      <b><%= link_to @ink.author.alias, @ink.author %></b><br/>
+      <%= truncate(@ink.author.autobiography, :length => 200) %>
+    </div>
   </div>
 
   <h3 class="tags">Tags</h3>
+
   <div>
     asd fjsadk flj dskadkf jjakef jkdsfe
   </div>
 
   <h3 class="more">More</h3>
+
   <div>
     asasdjfklasd jfklasdj fkladjsfk
   </div>

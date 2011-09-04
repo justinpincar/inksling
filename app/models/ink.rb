@@ -1,5 +1,5 @@
 class Ink < ActiveRecord::Base
-  belongs_to :user
+  belongs_to :author
 
   def title
     self[:title].present? ? self[:title] : "(untitled)"

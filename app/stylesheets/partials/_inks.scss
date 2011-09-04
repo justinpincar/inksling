@@ -12,11 +12,16 @@ body.inks {
             background: $light-blue-gray;
             border: 1px solid $medium-blue-gray;
             overflow-y: auto;
+            padding: 4px;
         }
     }
 
      .right-bar {
         @include column(6, true);
+
+        .author_blurb {
+            @include clearfix;
+        }
 
         .tags, .more {
             margin-top: 20px;

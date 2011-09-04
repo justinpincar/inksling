@@ -10,17 +10,9 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110904201610) do
+ActiveRecord::Schema.define(:version => 20110904210223) do
 
-  create_table "inks", :force => true do |t|
-    t.string   "title"
-    t.text     "text"
-    t.integer  "user_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "users", :force => true do |t|
+  create_table "authors", :force => true do |t|
     t.string   "email",                                 :default => "", :null => false
     t.string   "encrypted_password",     :limit => 128, :default => "", :null => false
     t.string   "reset_password_token"
@@ -34,9 +26,18 @@ ActiveRecord::Schema.define(:version => 20110904201610) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "alias"
+    t.text     "autobiography"
   end
 
-  add_index "users", ["email"], :name => "index_users_on_email", :unique => true
-  add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
+  add_index "authors", ["email"], :name => "index_authors_on_email", :unique => true
+  add_index "authors", ["reset_password_token"], :name => "index_authors_on_reset_password_token", :unique => true
+
+  create_table "inks", :force => true do |t|
+    t.string   "title"
+    t.text     "text"
+    t.integer  "author_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
 end

@@ -1,0 +1,13 @@
+body.authors {
+    .full {
+        @include column(24, true);
+    }
+
+    .main {
+        @include column(18);
+    }
+
+     .right-bar {
+        @include column(6, true);
+     }
+}

@@ -1,0 +1,32 @@
+<div class="full">
+  <h2><%= @author.alias %></h2>
+  <% if @author == current_author %><%= link_to 'Edit', edit_author_path(@author) %>
+      <br/>
+  <% end %>
+</div>
+
+<div class="main">
+  <div class="author_autobiography">
+    <img class="author_thumbnail" style="float: left; margin-right: 6px; margin-bottom: 2px;"/>
+    <div style="display: inline; vertical-align: top;">
+        <%= @author.autobiography.present? ? strip_tags(@author.autobiography).gsub("\n", "<br />").html_safe : "(this author has no autobiography)" %>
+    </div>
+  </div>
+</div>
+
+<div class="right-bar">
+  <div class="audience_blurb">
+    <h3>Audience</h3>
+    <div>
+        <img class="author_thumbnail_small" style="float: left; margin-right: 6px; margin-bottom: 2px;"/>
+        <img class="author_thumbnail_small" style="float: left; margin-right: 6px; margin-bottom: 2px;"/>
+        <img class="author_thumbnail_small" style="float: left; margin-right: 6px; margin-bottom: 2px;"/>
+        <img class="author_thumbnail_small" style="float: left; margin-right: 6px; margin-bottom: 2px;"/>
+    </div>
+    <div>
+      <%= form_tag() do %>
+            <%= submit_tag("Follow", :style => "margin-top: 5px;") %>
+      <% end %>
+    </div>
+  </div>
+</div>

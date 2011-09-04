@@ -1,5 +1,5 @@
 class InksController < ApplicationController
-  before_filter :authenticate_user!, :only => [:create, :edit, :update, :destroy]
+  before_filter :authenticate_author!, :only => [:create, :edit, :update, :destroy]
 
   def index
     @inks = Ink.all
@@ -14,7 +14,7 @@ class InksController < ApplicationController
   end
 
   def create
-    @ink = current_user.inks.build
+    @ink = current_author.inks.build
     @ink.save!
 
     redirect_to(@ink, :notice => 'Ink was successfully created.')

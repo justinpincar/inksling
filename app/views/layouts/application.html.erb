@@ -54,9 +54,9 @@
                 </ul>
               </div>
               <div class="right">
-                <% if user_signed_in? %>
-                    <a href="<%= destroy_user_session_path %>" id="user_nav"><span class="weak">Sign out</span></a>
-                    <a href="<%= dashboard_index_path %>" id="user_nav"><span class="weak"><%= current_user.email %></span></a>
+                <% if author_signed_in? %>
+                    <a href="<%= destroy_author_session_path %>" id="user_nav"><span class="weak">Sign out</span></a>
+                    <a href="<%= dashboard_index_path %>" id="user_nav"><span class="weak"><%= current_author.email %></span></a>
                 <% else %>
                     <a href="<%= authenticate_path %>" id="user_nav">
                       Log in <span class="weak">or</span> Sign up

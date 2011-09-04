@@ -851,7 +851,7 @@ Ajax.InPlaceCollectionEditor = Class.create(Ajax.InPlaceEditor, {
 
 //**** DEPRECATION LAYER FOR InPlace[Collection]Editor! ****
 //**** This only  exists for a while,  in order to  let ****
-//**** users adapt to  the new API.  Read up on the new ****
+//**** authors adapt to  the new API.  Read up on the new ****
 //**** API and convert your code to it ASAP!            ****
 
 Ajax.InPlaceEditor.prototype.initialize.dealWithDeprecatedOptions = function(options) {

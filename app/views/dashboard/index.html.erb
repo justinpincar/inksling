@@ -9,12 +9,12 @@
     <div class="ink_blurb">
       <img class="ink_icon" style="float: left; margin-right: 6px; margin-bottom: 2px;" />
       <div style="display: inline; line-height: 52px;">
-        <%= form_tag(:url => inks_path, :method => "post") do %>
+        <%= form_tag(:controller => "inks", :action => "create") do %>
             <%= submit_tag("Create something!") %>
         <% end %>
       </div>
     </div>
-    <% current_user.inks.each do |ink| %>
+    <% current_author.inks.each do |ink| %>
         <div class="ink_blurb">
           <img class="ink_icon" style="float: left; margin-right: 6px; margin-bottom: 2px;" />
           <div style="display: inline; vertical-align: top;">

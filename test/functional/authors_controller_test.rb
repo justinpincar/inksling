@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class UsersControllerTest < ActionController::TestCase
+class AuthorsControllerTest < ActionController::TestCase
   setup do
     @user = users(:one)
   end
@@ -8,7 +8,7 @@ class UsersControllerTest < ActionController::TestCase
   test "should get index" do
     get :index
     assert_response :success
-    assert_not_nil assigns(:users)
+    assert_not_nil assigns(:authors)
   end
 
   test "should get new" do
@@ -17,7 +17,7 @@ class UsersControllerTest < ActionController::TestCase
   end
 
   test "should create user" do
-    assert_difference('User.count') do
+    assert_difference('Author.count') do
       post :create, :user => @user.attributes
     end
 
@@ -40,7 +40,7 @@ class UsersControllerTest < ActionController::TestCase
   end
 
   test "should destroy user" do
-    assert_difference('User.count', -1) do
+    assert_difference('Author.count', -1) do
       delete :destroy, :id => @user.to_param
     end
 
