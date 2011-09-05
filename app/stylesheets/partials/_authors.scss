@@ -26,5 +26,21 @@ body.authors {
 
      .right-bar {
         @include column(6, true);
+
+        .audience_blurb {
+            .follow_form {
+                clear: both;
+            }
+        }
+
+        .audience_blurb, .following_blurb {
+            margin-bottom: 25px;
+
+            img.author_thumbnail_small {
+                float: left;
+                margin-right: 6px;
+                margin-bottom: 2px;
+            }
+        }
      }
 }

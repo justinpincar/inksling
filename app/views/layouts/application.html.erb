@@ -55,7 +55,7 @@
               </div>
               <div class="right">
                 <% if author_signed_in? %>
-                    <a href="<%= destroy_author_session_path %>" id="user_nav"><span class="weak">Sign out</span></a>
+                    <a href="<%= sign_out_path %>" id="user_nav"><span class="weak">Sign out</span></a>
                     <a href="<%= dashboard_index_path %>" id="user_nav"><span class="weak"><%= current_author.email %></span></a>
                 <% else %>
                     <a href="<%= authenticate_path %>" id="user_nav">

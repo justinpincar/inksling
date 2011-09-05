@@ -1,33 +1,14 @@
 class AuthorsController < ApplicationController
-  def index
-    @authors = Author.all
-  end
-
   def show
-    @author = Author.find(params[:id])
-  end
-
-  def new
-    @author = Author.new
+    load_author
   end
 
   def edit
-    @author = Author.find(params[:id])
-  end
-
-  def create
-    @author = Author.new(params[:author])
-    @author.alias = "InkSlinger"
-
-    if @author.save
-      redirect_to(@author, :notice => 'Author was successfully created.')
-    else
-      render :action => "new"
-    end
+    load_author
   end
 
   def update
-    @author = Author.find(params[:id])
+    load_author
 
     if @author.update_attributes(params[:author])
       redirect_to(@author, :notice => 'Author was successfully updated.')
@@ -36,10 +17,27 @@ class AuthorsController < ApplicationController
     end
   end
 
-  def destroy
-    @author = Author.find(params[:id])
-    @author.destroy
+  def follow
+    load_author
 
-    redirect_to(authors_url)
+    @author.followers |= [current_author]
+    @author.save
+
+    redirect_to request.referer, :notice => "You are now following #{@author.alias}."
+  end
+
+  def unfollow
+    load_author
+
+    @author.followers.delete(current_author)
+    @author.save
+
+    redirect_to request.referer, :notice => "You are no longer following #{@author.alias}."
+  end
+
+  private
+
+  def load_author
+    @author = Author.find(params[:id])
   end
 end

@@ -11,63 +11,77 @@
   </div>
 
   <div class="comments_block">
-      <h3>Comments</h3>
-      <div>
-        <% if @ink.comments.empty? %>
-            No comments.
-        <% else %>
-            <% @ink.comments.each do |comment| %>
+    <h3>Comments</h3>
+
+    <div>
+      <% if @ink.comments.any? %>
+          <% @ink.comments.each do |comment| %>
               <div class="comment_block">
                 <img class="author_thumbnail_small" src="<%= comment.author.thumbnail_url %>"/>
+
                 <div class="comment_content">
                   <b><%= link_to comment.author.alias, comment.author %></b>
-                  <% if @ink.author == current_author %><%= link_to "(remove)", comment_path(comment), :method => "delete", :confirm => "Really remove this comment?" %><% end %>
+                  <% if @ink.author == current_author %><%= link_to "(remove)", comment_path(comment), :method => "delete", :confirm => "Really remove this comment?" %>
+                  <% end %>
                   <br/>
                   <%= comment.text %>
                 </div>
               </div>
-            <% end %>
-        <% end %>
-        <%= form_for(Comment.new) do |f| %>
-            <%= hidden_field_tag :ink_id, @ink.id %>
+          <% end %>
+      <% end %>
+      <%= form_for(Comment.new) do |f| %>
+          <%= hidden_field_tag :ink_id, @ink.id %>
           <div class="comment_block">
             <% if author_signed_in? %>
-            <img class="author_thumbnail_small" src="<%= current_author.thumbnail_url %>"/>
-            <div class="comment_content">
-                <%= f.text_area :text %>
-                <%= f.submit ("Comment") %>
+                <img class="author_thumbnail_small" src="<%= current_author.thumbnail_url %>"/>
+
+                <div class="comment_content">
+                  <%= f.text_area :text %>
+                  <%= f.submit ("Comment") %>
             <% else %>
-            <img class="author_thumbnail_small" src="<%= Author.thumbnail_url %>"/>
-            <div class="comment_content">
-                <%= f.text_area :text %>
-                <%= f.submit ("Comment") %>
+                <img class="author_thumbnail_small" src="<%= Author.thumbnail_url %>"/>
+
+                <div class="comment_content">
+                  <%= f.text_area :text %>
+                  <%= f.submit ("Comment") %>
             <% end %>
             </div>
-          </div>
+            </div>
 
-        <% end %>
+      <% end %>
       </div>
-  </div>
-</div>
-
-<div class="right-bar">
-  <div class="author_blurb">
-    <img class="author_thumbnail" src="<%= current_author.thumbnail_url %>"/>
-    <div class="author_content">
-      <b><%= link_to @ink.author.alias, @ink.author %></b><br/>
-      <%= truncate(@ink.author.autobiography, :length => 170) %>
     </div>
   </div>
 
-  <h3 class="tags">Tags</h3>
+  <div class="right-bar">
+    <div class="author_blurb">
+      <img class="author_thumbnail" src="<%= current_author.thumbnail_url %>"/>
 
-  <div>
-    asd fjsadk flj dskadkf jjakef jkdsfe
-  </div>
+      <div class="author_content">
+        <b><%= link_to @ink.author.alias, @ink.author %></b><br/>
+        <%= truncate(@ink.author.autobiography, :length => 170) %>
+      </div>
+    </div>
 
-  <h3 class="more">More</h3>
+    <h3 class="tags">Tags</h3>
 
-  <div>
-    asasdjfklasd jfklasdj fkladjsfk
+    <div>
+      asd fjsadk flj dskadkf jjakef jkdsfe
+    </div>
+
+    <h3 class="more">More</h3>
+    <% inks = Array.new %>
+    <% inks |= @ink.author.inks %>
+    <% inks.delete(@ink) %>
+    <% inks.each do |ink| %>
+        <div class="ink_blurb">
+          <img class="ink_icon" src="<%= ink.thumbnail_url %>" style="float: left; margin-right: 6px; margin-bottom: 2px;"/>
+
+          <div style="display: inline; vertical-align: top;">
+            <b><%= link_to ink.title, ink %></b><br/>
+            <%= truncate(ink.text, :length => 100) %>
+          </div>
+        </div>
+    <% end %>
   </div>
 </div>

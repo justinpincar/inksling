@@ -8,22 +8,26 @@
 <div class="main">
   <div class="author_autobiography">
     <img class="author_thumbnail" src="<%= @author.thumbnail_url %>"/>
+
     <div class="author_content">
-        <%= @author.autobiography.present? ? strip_tags(@author.autobiography).gsub("\n", "<br />").html_safe : "(this author has no autobiography)" %>
+      <%= @author.autobiography.present? ? strip_tags(@author.autobiography).gsub("\n", "<br />").html_safe : "(this author has no autobiography)" %>
     </div>
   </div>
-  <br />
-  <br />
+  <br/>
+  <br/>
+
   <h3><%= @author.alias %>'s Ink</h3>
+
   <div>
     <% if @author.inks.empty? %>
         <%= @author.alias %> hasn't created anything yet.
     <% else %>
         <% @author.inks.each do |ink| %>
             <div class="ink_blurb">
-              <img class="ink_icon" src="<%= ink.thumbnail_url %>" style="float: left; margin-right: 6px; margin-bottom: 2px;" />
+              <img class="ink_icon" src="<%= ink.thumbnail_url %>" style="float: left; margin-right: 6px; margin-bottom: 2px;"/>
+
               <div style="display: inline; vertical-align: top;">
-                <b><%= link_to ink.title, ink %></b><br />
+                <b><%= link_to ink.title, ink %></b><br/>
                 <%= truncate(ink.text, :length => 250) %>
               </div>
             </div>
@@ -35,15 +39,41 @@
 <div class="right-bar">
   <div class="audience_blurb">
     <h3>Audience</h3>
+
     <div>
-        <img class="author_thumbnail_small" style="float: left; margin-right: 6px; margin-bottom: 2px;"/>
-        <img class="author_thumbnail_small" style="float: left; margin-right: 6px; margin-bottom: 2px;"/>
-        <img class="author_thumbnail_small" style="float: left; margin-right: 6px; margin-bottom: 2px;"/>
-        <img class="author_thumbnail_small" style="float: left; margin-right: 6px; margin-bottom: 2px;"/>
+      <% if @author.followers.empty? %>
+          No one is currently following <%= @author.alias %>.
+      <% else %>
+          <% @author.followers.each do |follower| %>
+            <img class="author_thumbnail_small" src="<%= follower.thumbnail_url %>"/>
+          <% end %>
+      <% end %>
     </div>
+    <% if author_signed_in? and current_author != @author %>
+        <div class="follow_form">
+          <% if current_author.is_following.include?(@author) %>
+              <%= form_tag(unfollow_author_path(@author)) do %>
+                  <%= submit_tag("Unfollow", :style => "margin-top: 5px;") %>
+              <% end %>
+          <% else %>
+              <%= form_tag(follow_author_path(@author)) do %>
+                  <%= submit_tag("Follow", :style => "margin-top: 5px;") %>
+              <% end %>
+          <% end %>
+        </div>
+    <% end %>
+  </div>
+
+  <div class="following_blurb">
+    <h3>Following</h3>
+
     <div>
-      <%= form_tag() do %>
-            <%= submit_tag("Follow", :style => "margin-top: 5px;") %>
+      <% if @author.is_following.empty? %>
+          <%= @author.alias %> is not currently following anyone.
+      <% else %>
+          <% @author.is_following.each do |followed| %>
+            <img class="author_thumbnail_small" src="<%= followed.thumbnail_url %>"/>
+          <% end %>
       <% end %>
     </div>
   </div>
