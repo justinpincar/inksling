@@ -7,6 +7,8 @@ body.authors {
         @include column(18);
 
         .author_autobiography {
+            @include clearfix;
+
             > .author_thumbnail {
                 float: left;
                 margin-right: 6px;
@@ -34,6 +36,8 @@ body.authors {
         }
 
         .audience_blurb, .following_blurb {
+            @include clearfix;
+
             margin-bottom: 25px;
 
             img.author_thumbnail_small {

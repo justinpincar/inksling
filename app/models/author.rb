@@ -10,6 +10,10 @@ class Author < ActiveRecord::Base
   has_many :followers, :class_name => 'Author', :through => :followings, :source => :follower
   has_many :is_following, :class_name => 'Author', :through => :is_followings, :source => :followed
 
+  def alias
+    self[:alias].present? ? self[:alias] : "Unidentified Author"
+  end
+
   def self.thumbnail_url
     "http://www.gravatar.com/avatar/00000000000000000000000000000000?s=512&d=mm"
   end

@@ -45,7 +45,7 @@
           No one is currently following <%= @author.alias %>.
       <% else %>
           <% @author.followers.each do |follower| %>
-            <img class="author_thumbnail_small" src="<%= follower.thumbnail_url %>"/>
+            <a href="<%= author_path(follower) %>"><img class="author_thumbnail_small" src="<%= follower.thumbnail_url %>"/></a>
           <% end %>
       <% end %>
     </div>
@@ -72,7 +72,7 @@
           <%= @author.alias %> is not currently following anyone.
       <% else %>
           <% @author.is_following.each do |followed| %>
-            <img class="author_thumbnail_small" src="<%= followed.thumbnail_url %>"/>
+            <a href="<%= author_path(followed) %>"><img class="author_thumbnail_small" src="<%= followed.thumbnail_url %>"/></a>
           <% end %>
       <% end %>
     </div>
