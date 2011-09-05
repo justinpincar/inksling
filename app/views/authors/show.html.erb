@@ -21,7 +21,7 @@
     <% else %>
         <% @author.inks.each do |ink| %>
             <div class="ink_blurb">
-              <img class="ink_icon" style="float: left; margin-right: 6px; margin-bottom: 2px;" />
+              <img class="ink_icon" src="<%= ink.thumbnail_url %>" style="float: left; margin-right: 6px; margin-bottom: 2px;" />
               <div style="display: inline; vertical-align: top;">
                 <b><%= link_to ink.title, ink %></b><br />
                 <%= truncate(ink.text, :length => 250) %>

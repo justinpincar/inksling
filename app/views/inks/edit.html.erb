@@ -19,9 +19,9 @@
 
       <div>
         What type of composition is this?<br />
-        * poem<br />
-        * story<br />
-        * other
+        <%= f.radio_button :category, "poem" %> Poem<br />
+        <%= f.radio_button :category, "short_story" %> Short Story<br />
+        <%= f.radio_button :category, "other" %> Other
       </div>
     </div>
 <% end %>

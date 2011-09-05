@@ -5,4 +5,19 @@ class Ink < ActiveRecord::Base
   def title
     self[:title].present? ? self[:title] : "(untitled)"
   end
+
+  def category
+    self[:category].present? ? self[:category] : "other"
+  end
+
+  def thumbnail_url
+    case category
+      when "poem"
+        "/images/icon_poem.png"
+      when "short_story"
+        "/images/icon_short_story.png"
+      else
+        "/images/icon_other.png"
+    end
+  end
 end
