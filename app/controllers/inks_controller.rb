@@ -34,6 +34,6 @@ class InksController < ApplicationController
     @ink = Ink.find(params[:id])
     @ink.destroy
 
-    redirect_to(inks_url)
+    redirect_to(dashboard_index_path, :notice => 'Ink was successfully erased.')
   end
 end
