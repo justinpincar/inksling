@@ -70,18 +70,24 @@
   </div>
 
   <h3 class="more">More</h3>
-  <% inks = Array.new %>
-  <% inks |= @ink.author.inks %>
-  <% inks.delete(@ink) %>
-  <% inks.each do |ink| %>
-      <div class="ink_blurb">
-        <img class="ink_icon" src="<%= ink.thumbnail_url %>" style="float: left; margin-right: 6px; margin-bottom: 2px;"/>
+  <div>
+      <% inks = Array.new %>
+      <% inks |= @ink.author.inks.where("text IS NOT NULL") %>
+      <% inks.delete(@ink) %>
+      <% if inks.empty? %>
+          <%= @ink.author.alias %> doesn't have any other inks.
+      <% else %>
+          <% inks.sort_by{rand}.each do |ink| %>
+              <div class="ink_blurb">
+                <img class="ink_icon" src="<%= ink.thumbnail_url %>" style="float: left; margin-right: 6px; margin-bottom: 2px;"/>
 
-        <div style="display: inline; vertical-align: top;">
-          <b><%= link_to ink.title, ink %></b><br/>
-          <%= truncate(ink.text, :length => 100) %>
-        </div>
-      </div>
-  <% end %>
+                <div style="display: inline; vertical-align: top;">
+                  <b><%= link_to ink.title, ink %></b><br/>
+                  <%= truncate(ink.text, :length => 100) %>
+                </div>
+              </div>
+          <% end %>
+      <% end %>
+  </div>
 </div>
 </div>
