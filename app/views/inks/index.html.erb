@@ -1,21 +1,39 @@
-<h1>Listing inks</h1>
+<div class="full">
+  <h2>The Library</h2>
+</div>
 
-<table>
-  <tr>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+<div class="main">
+  <div>
+    <%= render :partial => 'inks/inks_list', :locals => {:inks => (@inks.sort_by &:updated_at).reverse} %>
+  </div>
+</div>
 
-<% @inks.each do |ink| %>
-  <tr>
-    <td><%= link_to 'Show', ink %></td>
-    <td><%= link_to 'Edit', edit_ink_path(ink) %></td>
-    <td><%= link_to 'Destroy', ink, :confirm => 'Are you sure?', :method => :delete %></td>
-  </tr>
-<% end %>
-</table>
+<div class="right-bar">
+  <div class="author_blurb">
+    <% if author_signed_in? %>
+        <a href="<%= author_path(current_author) %>"><img class="author_thumbnail" src="<%= current_author.thumbnail_url %>"/></a>
+    <% else %>
+        <img class="author_thumbnail" src="<%= Author.thumbnail_url %>"/>
+    <% end %>
 
-<br />
+    <div style="display: inline; line-height: 82px;">
+      <%= form_tag(:controller => "inks", :action => "create") do %>
+          <%= submit_tag("Create something!") %>
+      <% end %>
+    </div>
+  </div>
 
-<%= link_to 'New Ink', new_ink_path %>
+  <h3 class="tags">Tags</h3>
+
+  <div>
+    asd fjsadk flj dskadkf jjakef jkdsfe
+  </div>
+
+  <h3 class="authors">Authors</h3>
+
+  <div class="authors_block">
+    <% @authors.each do |author| %>
+        <a href="<%= author_path(author) %>"><img class="author_thumbnail_small" src="<%= author.thumbnail_url %>"/></a>
+    <% end %>
+  </div>
+</div>

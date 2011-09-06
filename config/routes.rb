@@ -13,7 +13,12 @@ Inksling::Application.routes.draw do
 
   resources :comments, :only => [:create, :destroy]
   resources :dashboard, :only => [:index]
-  resources :inks
+
+  resources :inks do
+    collection do
+      get :random
+    end
+  end
 
   root :to => "home#index"
 end

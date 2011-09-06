@@ -22,16 +22,7 @@
     <% if @author.inks.empty? %>
         <%= @author.alias %> hasn't created anything yet.
     <% else %>
-        <% @author.inks.each do |ink| %>
-            <div class="ink_blurb">
-              <img class="ink_icon" src="<%= ink.thumbnail_url %>" style="float: left; margin-right: 6px; margin-bottom: 2px;"/>
-
-              <div style="display: inline; vertical-align: top;">
-                <b><%= link_to ink.title, ink %></b><br/>
-                <%= truncate(ink.text, :length => 250) %>
-              </div>
-            </div>
-        <% end %>
+        <%= render :partial => 'inks/inks_list', :locals => {:inks => (@author.inks.sort_by &:updated_at).reverse} %>
     <% end %>
   </div>
 </div>
@@ -45,7 +36,7 @@
           No one is currently following <%= @author.alias %>.
       <% else %>
           <% @author.followers.each do |follower| %>
-            <a href="<%= author_path(follower) %>"><img class="author_thumbnail_small" src="<%= follower.thumbnail_url %>"/></a>
+              <a href="<%= author_path(follower) %>"><img class="author_thumbnail_small" src="<%= follower.thumbnail_url %>"/></a>
           <% end %>
       <% end %>
     </div>
@@ -72,7 +63,7 @@
           <%= @author.alias %> is not currently following anyone.
       <% else %>
           <% @author.is_following.each do |followed| %>
-            <a href="<%= author_path(followed) %>"><img class="author_thumbnail_small" src="<%= followed.thumbnail_url %>"/></a>
+              <a href="<%= author_path(followed) %>"><img class="author_thumbnail_small" src="<%= followed.thumbnail_url %>"/></a>
           <% end %>
       <% end %>
     </div>

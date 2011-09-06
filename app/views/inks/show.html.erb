@@ -38,50 +38,50 @@
                 <div class="comment_content">
                   <%= f.text_area :text %>
                   <%= f.submit ("Comment") %>
+                </div>
             <% else %>
                 <img class="author_thumbnail_small" src="<%= Author.thumbnail_url %>"/>
 
                 <div class="comment_content">
                   <%= f.text_area :text %>
                   <%= f.submit ("Comment") %>
+                </div>
             <% end %>
-            </div>
-            </div>
-
-      <% end %>
-      </div>
-    </div>
-  </div>
-
-  <div class="right-bar">
-    <div class="author_blurb">
-      <img class="author_thumbnail" src="<%= current_author.thumbnail_url %>"/>
-
-      <div class="author_content">
-        <b><%= link_to @ink.author.alias, @ink.author %></b><br/>
-        <%= truncate(@ink.author.autobiography, :length => 170) %>
-      </div>
-    </div>
-
-    <h3 class="tags">Tags</h3>
-
-    <div>
-      asd fjsadk flj dskadkf jjakef jkdsfe
-    </div>
-
-    <h3 class="more">More</h3>
-    <% inks = Array.new %>
-    <% inks |= @ink.author.inks %>
-    <% inks.delete(@ink) %>
-    <% inks.each do |ink| %>
-        <div class="ink_blurb">
-          <img class="ink_icon" src="<%= ink.thumbnail_url %>" style="float: left; margin-right: 6px; margin-bottom: 2px;"/>
-
-          <div style="display: inline; vertical-align: top;">
-            <b><%= link_to ink.title, ink %></b><br/>
-            <%= truncate(ink.text, :length => 100) %>
           </div>
-        </div>
-    <% end %>
+      <% end %>
+    </div>
   </div>
+</div>
+
+<div class="right-bar">
+  <div class="author_blurb">
+    <img class="author_thumbnail" src="<%= @ink.author.thumbnail_url %>"/>
+
+    <div class="author_content">
+      <b><%= link_to @ink.author.alias, @ink.author %></b><br/>
+      <%= truncate(@ink.author.autobiography, :length => 170) %>
+    </div>
+  </div>
+
+  <h3 class="tags">Tags</h3>
+
+  <div>
+    asd fjsadk flj dskadkf jjakef jkdsfe
+  </div>
+
+  <h3 class="more">More</h3>
+  <% inks = Array.new %>
+  <% inks |= @ink.author.inks %>
+  <% inks.delete(@ink) %>
+  <% inks.each do |ink| %>
+      <div class="ink_blurb">
+        <img class="ink_icon" src="<%= ink.thumbnail_url %>" style="float: left; margin-right: 6px; margin-bottom: 2px;"/>
+
+        <div style="display: inline; vertical-align: top;">
+          <b><%= link_to ink.title, ink %></b><br/>
+          <%= truncate(ink.text, :length => 100) %>
+        </div>
+      </div>
+  <% end %>
+</div>
 </div>

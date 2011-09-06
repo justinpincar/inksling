@@ -57,26 +57,61 @@ body.inks {
         .author_blurb {
             @include clearfix;
 
-            > .author_thumbnail {
-                float: left;
-                margin-right: 6px;
-                margin-bottom: 2px;
-            }
-
             > .author_content {
                 display: inline;
                 vertical-align: top;
             }
         }
 
-        .tags, .more, .other {
+        .tags, .more, .authors, .other {
             margin-top: 20px;
         }
 
         .ink_blurb {
             margin-bottom: 15px;
         }
+
+
+        .audience_blurb {
+            .follow_form {
+                clear: both;
+            }
+        }
+
+        .authors_block {
+            @include clearfix;
+
+            img.author_thumbnail_small {
+                float: left;
+                margin-right: 6px;
+                margin-bottom: 2px;
+            }
+        }
      }
+}
+
+body.inks.index {
+    .right-bar {
+        .author_blurb {
+            a {
+                float: left;
+                margin-right: 6px;
+                margin-bottom: 2px;
+            }
+        }
+    }
+}
+
+body.inks.show {
+    .right-bar {
+        .author_blurb {
+            > .author_thumbnail {
+                float: left;
+                margin-right: 6px;
+                margin-bottom: 2px;
+            }
+        }
+    }
 }
 
 body.inks.edit {

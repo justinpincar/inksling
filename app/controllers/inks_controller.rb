@@ -2,7 +2,15 @@ class InksController < ApplicationController
   before_filter :authenticate_author!, :only => [:create, :edit, :update, :destroy]
 
   def index
-    @inks = Ink.all
+    @inks = Ink.where("text IS NOT NULL").all
+    @authors = Author.all
+  end
+
+  def random
+    offset = rand(Ink.where("text IS NOT NULL").count)
+    @ink = Ink.where("text IS NOT NULL").first(:offset => offset)
+
+    redirect_to @ink
   end
 
   def show

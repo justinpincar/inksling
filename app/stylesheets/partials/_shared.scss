@@ -15,3 +15,8 @@ img.ink_icon {
     height: 50px;
     border: 1px solid $light-black;
 }
+
+.ink_blurb {
+    @include clearfix;
+    margin-bottom: 15px;
+}
