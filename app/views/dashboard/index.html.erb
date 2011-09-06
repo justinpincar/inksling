@@ -1,5 +1,21 @@
 <div class="main">
   <h2>Recommended</h2>
+
+  <div>
+    <%= render :partial => 'inks/inks_list', :locals => {:inks => (@inks.sort_by &:updated_at).reverse} %>
+  </div>
+
+  <% if current_author.is_following.any? %>
+      <div class="following_block">
+        <h2>Following</h2>
+
+        <div>
+          <% current_author.is_following.each do |followed| %>
+              <a href="<%= author_path(followed) %>"><img class="author_thumbnail_small" src="<%= followed.thumbnail_url %>"/></a>
+          <% end %>
+        </div>
+      </div>
+  <% end %>
 </div>
 
 <div class="right-bar">
@@ -7,18 +23,20 @@
 
   <div>
     <div class="ink_blurb">
-      <img class="ink_icon" src="/images/icon_question_mark.png" style="float: left; margin-right: 6px; margin-bottom: 2px;" />
+      <img class="ink_icon" src="/images/icon_question_mark.png" style="float: left; margin-right: 6px; margin-bottom: 2px;"/>
+
       <div style="display: inline; line-height: 52px;">
         <%= form_tag(:controller => "inks", :action => "create") do %>
             <%= submit_tag("Create something!") %>
         <% end %>
       </div>
     </div>
-    <% current_author.inks.each do |ink| %>
+    <% current_author.inks.sort_by { :updated_at }.reverse.each do |ink| %>
         <div class="ink_blurb">
-          <img class="ink_icon" src="<%= ink.thumbnail_url %>" style="float: left; margin-right: 6px; margin-bottom: 2px;" />
+          <img class="ink_icon" src="<%= ink.thumbnail_url %>" style="float: left; margin-right: 6px; margin-bottom: 2px;"/>
+
           <div style="display: inline; vertical-align: top;">
-            <b><%= link_to ink.title, ink %></b><br />
+            <b><%= link_to ink.title, ink %></b><br/>
             <%= truncate(ink.text, :length => 200) %>
           </div>
         </div>
