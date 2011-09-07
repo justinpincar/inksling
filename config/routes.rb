@@ -1,6 +1,10 @@
 Inksling::Application.routes.draw do
-  devise_for :authors do
-    match '/home/authenticate' => "devise/registrations#new", :as => :authenticate
+  devise_for :authors,
+             :controllers => {
+                 :sessions => "authors/sessions",
+                 :sessions => "authors/sessions"
+             } do
+    match '/home/authenticate' => "authors/sessions#new", :as => :authenticate
     match '/sign_out' => "devise/sessions#destroy", :as => :sign_out
   end
 
