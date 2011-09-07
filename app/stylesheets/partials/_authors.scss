@@ -44,3 +44,62 @@ body.authors {
         }
      }
 }
+
+body.authors.sessions.new, body.devise.registrations.create {
+    .login_or_signup {
+        position: relative;
+        top: 100px;
+        width: 724px;
+        text-align: center;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .login_block, .signup_block {
+        float: left;
+        width: 300px;
+        padding: 4px;
+        padding-top: 10px;
+        border: 2px solid black;
+
+        h2 {
+            margin-bottom: 20px;
+        }
+
+        div.row {
+            margin-bottom: 10px;
+            text-align: left;
+
+            label {
+                float: left;
+                display: inline-block;
+                width: 100px;
+                text-align: right;
+                line-height: 28px;
+                margin-right: 4px;
+            }
+
+            input[type=text], input[type=password] {
+                height: 18px;
+                padding: 2px;
+            }
+        }
+    }
+
+    .login_block {
+        position: relative;
+        top: 50px;
+    }
+
+    .signup_block {
+        position: relative;
+        top: 33px;
+    }
+
+    .center_block {
+        float: left;
+        width: 100px;
+        height: 275px;
+        line-height: 275px;
+    }
+}
