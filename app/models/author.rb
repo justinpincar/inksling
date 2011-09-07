@@ -1,7 +1,7 @@
 class Author < ActiveRecord::Base
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable
 
-  attr_accessible :email, :password, :remember_me, :autobiography
+  attr_accessible :email, :password, :remember_me, :alias, :autobiography
 
   has_many :inks
 
