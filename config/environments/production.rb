@@ -46,4 +46,9 @@ Inksling::Application.configure do
 
   # Send deprecation notices to registered listeners
   config.active_support.deprecation = :notify
+
+  Inksling::Application.config.middleware.use ExceptionNotifier,
+  :email_prefix => "[Exception] ",
+  :sender_address => %{"notifier" <notifications@inksling.org>},
+  :exception_recipients => %w{justinpincar@gmail.com}
 end
