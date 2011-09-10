@@ -63,7 +63,7 @@ body.inks {
             }
         }
 
-        .tags, .more, .authors, .other {
+        h3.tags, h3.more, h3.authors, h3.other {
             margin-top: 20px;
         }
 
@@ -126,6 +126,14 @@ body.inks.edit {
         .text {
             width: 695px;
             height: 500px;
+        }
+    }
+
+    .right-bar {
+        .tags_block {
+            .tags {
+                margin-top: 4px;
+            }
         }
     }
 }

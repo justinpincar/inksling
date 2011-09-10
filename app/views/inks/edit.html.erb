@@ -7,26 +7,81 @@
       <%= f.text_area :text, :class => "text" %>
       <%= f.submit %><%= link_to 'cancel', @ink %>
     </div>
-
-    <div class="right-bar">
-      <h3 class="tags">Tags</h3>
-
-      <div>
-        asd fjsadk flj dskadkf jjakef jkdsfe
-      </div>
-
-      <h3 class="more">Miscellaneous</h3>
-      <div>
-        What type of composition is this?<br />
-        <%= f.radio_button :category, "poem" %> Poem<br />
-        <%= f.radio_button :category, "short_story" %> Short Story<br />
-        <%= f.radio_button :category, "other" %> Other
-      </div>
-
-      <h3 class="other">Other</h3>
-      <div>
-        If you want to permanently delete this Ink, click on the word
-        <%= link_to "erase", ink_path(@ink), :method => "delete", :confirm => "Really erase this ink?" %>. You cannot undo this action.<br />
-      </div>
-    </div>
 <% end %>
+
+<div class="right-bar">
+  <h3 class="tags">Tags</h3>
+
+  <div class="tags_block">
+    <%= form_tag(tag_ink_path(@ink, :format => :json), :id => "ink_tag_form") do %>
+        <%= text_field_tag(:text, "", :id => "ink_tag_form_text") %>
+        <%= submit_tag("Tag") %>
+    <% end %>
+    <div class="tags">
+        <% @ink.tags.each do |tag| %>
+            <div class="tag" tag_text="<%= tag.text %>"><%= tag.text %><span class="remove_tag" tag_text="<%= tag.text %>">x</span></div>
+        <% end %>
+    </div>
+    <script>
+      $(function() {
+        $('#ink_tag_form').ajaxForm({
+            beforeSubmit: function() {
+              $('#ink_tag_form input').attr("disabled", true);
+            },
+            success: function(data) {
+              tags = $('.tags_block div.tags div.tag').filter(function() {
+                 return $(this).attr('tag_text') == data.tag.text
+              });
+
+              if (tags.length == 0) {
+                  text = data.tag.text
+                  tag = $('<div class="tag" tag_text='+ text + '>' + text + '<span class="remove_tag" tag_text="' + text + '">x</span></div>');
+
+                  tag.find('span.remove_tag').click(function() {
+                     $(this).parent().remove();
+                     $.post('<%= untag_ink_path(@ink) %>', { text: $(this).attr("tag_text") } );
+                  });
+
+                  $('.tags_block div.tags').append(tag);
+              }
+
+              $('#ink_tag_form input').attr("disabled", false);
+              $('#ink_tag_form #ink_tag_form_text').val("");
+            }
+        });
+
+        $('.tags .tag .remove_tag').click(function() {
+           $(this).parent().remove();
+           $.post('<%= untag_ink_path(@ink) %>', { text: $(this).attr("tag_text") } );
+        });
+      });
+    </script>
+  </div>
+
+  <h3 class="more">Miscellaneous</h3>
+
+  <div>
+    What type of composition is this?<br/>
+    <%= form_for(@ink, :format => :json, :remote => true, :html => {:id => "ink_type_form"}) do |f| %>
+        <%= f.radio_button :category, "poem" %> Poem<br/>
+        <%= f.radio_button :category, "short_story" %> Short Story<br/>
+        <%= f.radio_button :category, "other" %> Other
+    <% end %>
+
+    <script>
+      $(function() {
+         $('#ink_type_form input').click(function() {
+             $('#ink_type_form').submit();
+         });
+      });
+    </script>
+  </div>
+
+  <h3 class="other">Other</h3>
+
+  <div>
+    If you want to permanently delete this Ink, click on the word
+    <%= link_to "erase", ink_path(@ink), :method => "delete", :confirm => "Really erase this ink?" %>. You cannot undo
+    this action.<br/>
+  </div>
+</div>

@@ -4,6 +4,9 @@ class InksController < ApplicationController
   def index
     @inks = Ink.where("text IS NOT NULL").all
     @authors = Author.all
+
+    ink_tags = InkTag.select("count(*) as occurences, tag_id").group("tag_id").having("count(*) > 0")
+    @tags = Tag.where(:id => ink_tags.collect(&:tag_id))
   end
 
   def random
@@ -14,11 +17,11 @@ class InksController < ApplicationController
   end
 
   def show
-    @ink = Ink.find(params[:id])
+    load_ink
   end
 
   def edit
-    @ink = Ink.find(params[:id])
+    load_ink
   end
 
   def create
@@ -29,12 +32,46 @@ class InksController < ApplicationController
   end
 
   def update
-    @ink = Ink.find(params[:id])
+    load_ink
 
-    if @ink.update_attributes(params[:ink])
-      redirect_to(@ink, :notice => 'Ink was successfully updated.')
+    respond_to do |format|
+      if @ink.update_attributes(params[:ink])
+        format.html { redirect_to(@ink, :notice => 'Ink was successfully updated.') }
+        format.json { render :json => @ink }
+      else
+        format.html { render :action => "edit" }
+        format.json { render :json => @ink.errors, :status => :unprocessable_entity }
+      end
+    end
+  end
+
+  def tag
+    load_ink
+
+    text = params[:text].try(:strip)
+    tag = Tag.find_by_text(text) || Tag.create(:text => text)
+
+    @ink.tags |= [tag]
+
+    if @ink.save
+      render :json => tag
     else
-      render :action => "edit"
+      render :json => tag.errors
+    end
+  end
+
+  def untag
+    load_ink
+
+    text = params[:text].try(:strip)
+    tag = Tag.find_by_text(text)
+
+    @ink.tags.delete(tag)
+
+    if @ink.save
+      render :json => tag
+    else
+      render :json => tag.errors
     end
   end
 
@@ -43,5 +80,11 @@ class InksController < ApplicationController
     @ink.destroy
 
     redirect_to(dashboard_index_path, :notice => 'Ink was successfully erased.')
+  end
+
+  private
+
+  def load_ink
+    @ink = Ink.find(params[:id])
   end
 end

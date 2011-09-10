@@ -2,6 +2,9 @@ class Ink < ActiveRecord::Base
   belongs_to :author
   has_many :comments
 
+  has_many :ink_tags
+  has_many :tags, :through => :ink_tags
+
   def title
     self[:title].present? ? self[:title] : "(untitled)"
   end

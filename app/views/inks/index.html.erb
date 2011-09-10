@@ -25,8 +25,12 @@
 
   <h3 class="tags">Tags</h3>
 
-  <div>
-    asd fjsadk flj dskadkf jjakef jkdsfe
+  <div class="tags_block">
+    <div class="tags">
+        <% @tags.each do |tag| %>
+            <div class="tag"><%= tag.text %></div>
+        <% end %>
+    </div>
   </div>
 
   <h3 class="authors">Authors</h3>

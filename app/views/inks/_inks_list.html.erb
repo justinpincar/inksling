@@ -5,6 +5,11 @@
       <div style="display: inline; vertical-align: top;">
         <b><%= link_to ink.title, ink %></b><br/>
         <%= truncate(ink.text, :length => 250) %>
+        <div class="tags" style="margin-left: 56px;">
+            <% ink.tags.each do |tag| %>
+                <div class="tag"><%= tag.text %></div>
+            <% end %>
+        </div>
       </div>
     </div>
 <% end %>

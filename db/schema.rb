@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110905042918) do
+ActiveRecord::Schema.define(:version => 20110910032527) do
 
   create_table "authors", :force => true do |t|
     t.string   "email",                                 :default => "", :null => false
@@ -51,6 +51,17 @@ ActiveRecord::Schema.define(:version => 20110905042918) do
 
   add_index "followings", ["followed_id"], :name => "index_followings_on_followed_id"
 
+  create_table "ink_tags", :force => true do |t|
+    t.integer  "ink_id"
+    t.integer  "tag_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "ink_tags", ["ink_id", "tag_id"], :name => "index_ink_tags_on_ink_id_and_tag_id", :unique => true
+  add_index "ink_tags", ["ink_id"], :name => "index_ink_tags_on_ink_id"
+  add_index "ink_tags", ["tag_id"], :name => "index_ink_tags_on_tag_id"
+
   create_table "inks", :force => true do |t|
     t.string   "title"
     t.text     "text"
@@ -58,6 +69,12 @@ ActiveRecord::Schema.define(:version => 20110905042918) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "category"
+  end
+
+  create_table "tags", :force => true do |t|
+    t.string   "text"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
 end

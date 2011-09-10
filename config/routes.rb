@@ -19,6 +19,11 @@ Inksling::Application.routes.draw do
   resources :dashboard, :only => [:index]
 
   resources :inks do
+    member do
+      post :tag
+      post :untag
+    end
+
     collection do
       get :random
     end
