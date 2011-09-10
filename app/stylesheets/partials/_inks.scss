@@ -131,6 +131,10 @@ body.inks.edit {
 
     .right-bar {
         .tags_block {
+            input[type='text'] {
+                width: 100px;
+            }
+
             .tags {
                 margin-top: 4px;
             }
