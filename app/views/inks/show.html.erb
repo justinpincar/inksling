@@ -71,7 +71,7 @@
     <% else %>
         <div class="tags">
             <% @ink.tags.each do |tag| %>
-                <div class="tag"><%= tag.text %></div>
+                <a href="<%= tagged_inks_path(tag.text) %>"><div class="tag"><%= tag.text %></div></a>
             <% end %>
         </div>
     <% end %>
