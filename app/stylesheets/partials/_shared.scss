@@ -26,9 +26,14 @@ body.inks, body.authors {
         .tag {
             display: inline-block;
             border: 1px solid black;
+            color: $light-black;
             background-color: $light-blue-gray;
             padding: 3px 6px;
             margin: 3px;
+
+            &:hover {
+                background-color: $medium-blue-gray;
+            }
 
             .remove_tag {
                 margin-left: 6px;

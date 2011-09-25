@@ -45,10 +45,30 @@ class InksController < ApplicationController
     end
   end
 
+  def tagged
+    @authors = Author.all
+
+    ink_tags = InkTag.select("count(*) as occurences, tag_id").group("tag_id").having("count(*) > 0")
+    @tags = Tag.where(:id => ink_tags.collect(&:tag_id))
+
+    text = params[:text].try(:strip)
+    if text.nil? or text.empty?
+      redirect_to index
+      return
+    end
+
+    @tag = Tag.find_by_text(text)
+
+    @inks = []
+    if @tag.present?
+      @inks |= @tag.inks
+    end
+  end
+
   def tag
     load_ink
 
-    text = params[:text].try(:strip)
+    text = :text.try(:strip)
     tag = Tag.find_by_text(text) || Tag.create(:text => text)
 
     @ink.tags |= [tag]

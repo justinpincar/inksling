@@ -28,6 +28,7 @@ Inksling::Application.routes.draw do
       get :random
     end
   end
+  match '/inks/tagged/:text' => 'inks#tagged', :as => :tagged_inks
 
   match '/about' => 'home#about', :as => :about
   match '/jobs' => 'home#jobs', :as => :jobs

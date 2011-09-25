@@ -1,0 +1,33 @@
+<div class="right-bar">
+  <div class="author_blurb">
+    <% if author_signed_in? %>
+        <a href="<%= author_path(current_author) %>"><img class="author_thumbnail" src="<%= current_author.thumbnail_url %>"/></a>
+    <% else %>
+        <img class="author_thumbnail" src="<%= Author.thumbnail_url %>"/>
+    <% end %>
+
+    <div style="display: inline; line-height: 82px;">
+      <%= form_tag(:controller => "inks", :action => "create") do %>
+          <%= submit_tag("Create something!") %>
+      <% end %>
+    </div>
+  </div>
+
+  <h3 class="tags">Tags</h3>
+
+  <div class="tags_block">
+    <div class="tags">
+        <% @tags.each do |tag| %>
+            <a href="<%= tagged_inks_path(tag.text) %>"><div class="tag"><%= tag.text %></div></a>
+        <% end %>
+    </div>
+  </div>
+
+  <h3 class="authors">Authors</h3>
+
+  <div class="authors_block">
+    <% @authors.each do |author| %>
+        <a href="<%= author_path(author) %>"><img class="author_thumbnail_small" src="<%= author.thumbnail_url %>"/></a>
+    <% end %>
+  </div>
+</div>
