@@ -1,5 +1,37 @@
-<h1>Editing author</h1>
+<div class="full">
+  <h2>Edit Profile</h2>
+</div>
 
-We use gravatar to manage profile pictures. Click <a href="http://gravatar.com/emails" target="_blank">here</a> to change yours. You may need to create a free account with them if you haven't already.
+<div class="main">
+  <img class="author_thumbnail" src="<%= @author.thumbnail_url %>" style="float: left; margin-right: 10px;"/>
+  We use gravatar to manage profile pictures. You may need to create a free account with them if you haven't already.<br /><br />
+  Click <a href="http://gravatar.com/emails" target="_blank">here</a> to change your image.<br />
 
-<%= render 'form' %>
+  <div style="clear: both;"></div><br />
+  <%= form_for(@author) do |f| %>
+    <% if @author.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@author.errors.count, "error") %> prohibited this author from being saved:</h2>
+
+        <ul>
+        <% @author.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div>
+      <%= f.label :alias, "Pseudonym" %><br /><%= f.text_field :alias %><br />
+    </div>
+    <br />
+    <div>
+      <%= f.label :autobiography %><br /><%= f.text_area :autobiography %><br />
+    </div>
+
+    <div class="actions">
+      <%= f.submit %>
+    </div>
+  <% end %>
+
+</div>

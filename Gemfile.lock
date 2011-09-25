@@ -47,6 +47,7 @@ GEM
       abstract (>= 1.0.0)
     exception_notification (2.5.2)
       actionmailer (>= 3.0.4)
+    friendly_id (4.0.0.beta12)
     fssm (0.2.7)
     heroku (2.7.0)
       launchy (>= 0.3.2)
@@ -117,6 +118,7 @@ DEPENDENCIES
   compass
   devise
   exception_notification
+  friendly_id (~> 4.0.0.beta8)
   heroku
   pg
   rails (= 3.0.9)

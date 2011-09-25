@@ -1,4 +1,7 @@
 class Author < ActiveRecord::Base
+  extend FriendlyId
+  friendly_id :alias, :use => :slugged
+
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable
 
   attr_accessible :email, :password, :remember_me, :alias, :autobiography

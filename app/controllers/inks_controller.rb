@@ -68,7 +68,7 @@ class InksController < ApplicationController
   def tag
     load_ink
 
-    text = :text.try(:strip)
+    text = params[:text].try(:strip)
     tag = Tag.find_by_text(text) || Tag.create(:text => text)
 
     @ink.tags |= [tag]
