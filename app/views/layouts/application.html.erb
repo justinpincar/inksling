@@ -40,6 +40,18 @@
           var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(uv, s);
         })();
       </script>
+
+      <script type="text/javascript">
+        var _maq = _maq || [];
+        _maq.push(['_setAccount', 'test']);
+        _maq.push(['_trackPageview']);
+
+        (function() {
+          var ma = document.createElement('script'); ma.type = 'text/javascript'; ma.async = true;
+          ma.src = 'http://sidesp.in/ma.js';
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ma, s);
+        })();
+      </script>
     </head>
     <body class="<%= controller.controller_path.gsub("/", " ") %> <%= controller.controller_name %> <%= controller.action_name %>">
         <% if notice.present? or alert.present? %>
